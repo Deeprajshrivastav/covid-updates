@@ -40,4 +40,6 @@ def search():
     return render_template('index.html',stat=state[0], cfc=cfc, atc=atc, rvc=rvc, dth=dth, icfc=icfc, iatc=iatc, irvc=irvc, idth=idth)
 
 
-app.run(debug=True)
+if __name__ == '__main__':
+    
+    app.run(debug=True)
