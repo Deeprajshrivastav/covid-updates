@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid 19</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    .cointainer {
+        margin-top: 60px;
+    }
+
+    #box {
+        display: flex;
+        flex-direction: column;
+    }
+
+    p {
+        font-weight: bold;
+        margin: 2px;
+    }
+
+    #updates {
+
+        background: #20c997;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #About {
+        background: #fff;
+    }
+
+    #updates .cointainer {
+        padding: 10px;
+        background: #fff;
+        margin-top: 60px;
+
+        width: 70vw;
+        height: auto;
+        box-shadow: 0 5px 11px 0 rgb(0 0 0 / 18%), 0 4px 15px 0 rgb(0 0 0 / 15%);
+        border-radius: 30px;
+
+    }
+
+    .form-select {
+        width: 300px;
+        border-radius: 10px;
+        margin-bottom: 6px;
+    }
+
+    @media (max-width: 500px) {
+        .form-select {
+            width: 200px;
+            border-radius: 10px;
+            margin-bottom: 6px;
+        }
+
+        #updates .cointainer {
+            width: 80vw;
+        }
+
+    }
+
+    #updates .btn {
+        margin: 8px;
+        width: 100px;
+        font-size: 20px;
+    }
+
+    h3 {
+        color: #6610f2;
+        margin: 10px;
+        text-decoration: unset;
+    }
+
+    @media (min-height: 700px) {
+
+        h3 {
+            margin: 15px;
+            margin-top: 20px;
+        }
+
+        select {
+            height: 50px;
+        }
+
+        #d1 {
+            margin-bottom: 35px;
+        }
+    }
+
+    .navbar {
+        overflow: hidden;
+        background-color: #333;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: #fff;
+        box-shadow: 0 5px 25px rgb(0 0 0 / 50%);
+        z-index: 1000;
+    }
+
+    #updates {
+
+        height: 100vh;
+
+    }
+
+    header {
+        position: fixed;
+        top: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        background: #fff;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+
+    .logo {
+        height: 60px;
+        line-height: 60px;
+        color: #12334e;
+        font-weight: 700;
+        font-size: 1.4em;
+        text-decoration: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 20px;
+    }
+
+    #toggle {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 60px;
+        height: 60px;
+        background-color: #9051ff;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #toggle::before {
+        content: '';
+        position: absolute;
+        width: 28px;
+        height: 2px;
+        background: #fff;
+        transform: translateY(-5px);
+        transition: 0.2s;
+    }
+
+    #toggle::after {
+        content: '';
+        position: absolute;
+        width: 28px;
+        height: 2px;
+        background: #fff;
+        transform: translateY(5px);
+        transition: 0.2s;
+    }
+
+    #toggle.active::before {
+        transform: translateY(0px) rotate(45deg);
+    }
+
+    #toggle.active::after {
+        transform: translateY(0px) rotate(-45deg);
+    }
+
+    #toggle.active {
+        background: #f7226a;
+    }
+
+    #navbar {
+        position: relative;
+        height: 60px;
+        right: 60px;
+        background: #fff;
+        transition: 0.5s;
+        width: 0px;
+        overflow: hidden;
+    }
+
+    #navbar.active {
+        width: 520px;
+
+    }
+
+    #navbar ul {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+
+    }
+
+    #navbar ul li {
+        list-style: none;
+    }
+
+    #navbar ul li a {
+        color: black;
+        height: 60px;
+        line-height: 60px;
+        display: inline-block;
+        text-decoration: none;
+        font-size: 1.3em;
+        padding: 0 15px;
+        letter-spacing: 2px;
+        font-weight: 500;
+    }
+
+    #navbar ul li a:hover {
+        color: #820000;
+
+    }
+
+    @media (max-width: 991px) {
+        #navbar {
+            position: fixed;
+            bottom: -100%;
+            right: 0;
+            width: 100%;
+            transition: 0.5s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 60px);
+        }
+
+        #navbar.active {
+            height: calc(100vh - 60px);
+            bottom: 0;
+            width: 100%;
+            background: #d5f9fb;
+
+        }
+
+        #navbar ul {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .Fcssn {
+        vertical-align: middle;
+        width: 250px;
+        height: 260px;
+        border-radius: 50%;
+        margin-top: 2px;
+    }
+
+
+    #prevent {
+        height: 0px;
+        overflow: hidden;
+    }
+
+    #prevent.active {
+        height: auto;
+        margin-top: 25px;
+    }
+
+    #sympt {
+        height: 0px;
+        overflow: hidden;
+    }
+
+    #sympt.active {
+        height: auto;
+        display: inline-block;
+
+        margin-left: calc(50vw - 225px);
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+
+    }
+
+    .sym {
+
+        padding: 20px;
+    }
+
+    .sym h4 {
+        letter-spacing: 1.1px;
+    }
+
+    #treat {
+        height: 0px;
+        overflow: hidden;
+    }
+
+    #treat.active {
+        height: auto;
+        margin-left: 30px;
+        margin-right: 30px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+    }
+
+    @media (max-width: 500px) {
+        #treat.active {
+            margin-left: 5px;
+            margin-right: 5px
+        }
+    }
+
+    .butt {
+        margin-bottom: 35px;
+
+    }
+
+    .btn-outline-danger {
+        width: 150px;
+        font-size: 20px;
+    }
+
+    @media (max-width: 545px) {
+        .btn-outline-danger {
+            width: 100px;
+            font-size: 16px;
+        }
+    }
+
+    #home {
+        background-image: url('static/img/home.png');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .fw-bold {
+        margin: 8px;
+        padding: 8px;
+    }
+    .social{
+        background: grey;
+    }
+    a i{
+        margin-left: 20px;
+    }
+
+
+
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <a href="#" class="logo">COVID19</a>
+        <div id="toggle"></div>
+        <div id="navbar">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <!-- <li><a href="/updates">Symptoms</a></li> -->
+                <li><a href="#About">Symptoms</a></li>
+                <li><a href="#devloper">Source Code</a></li>
+            </ul>
+        </div>
+    </header>
+   <section id="updates">
+        <center>
+            <div class="cointainer">
+                <h3 class="text-center">India Covid 19 Case</h3>
+                <div class="box ">
+                    <div id="box" class="text center">
+                        <p class="text-center text-danger ">{{icfc}}</p>
+                        <p class="text-center text-danger ">{{iatc}}</p>
+                        <p class="text-center text-success ">{{irvc}}</p>
+                        <p class="text-center " id="d1">{{idth}}</p>
+                    </div>
+                </div>
+                <hr>
+                <h3 class="text-center" style="margin-top: 4vh; margin-bottom: 3vh;">Search by state</h3>
+                <form action="/search" method="POST">
+                    <select class="form-select" name="state">
+                        <option selected>Select location</option>
+                        <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                        <option value="Assam">Assam</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Chhattisgarh">Chhattisgarh</option>
+                        <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Haryana">Haryana</option>
+                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                        <option value="Jharkhand">Jharkhand</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Ladakh">Ladakh</option>
+                        <option value="Lakshadweep">Lakshadweep</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Manipur">Manipur</option>
+                        <option value="Meghalaya">Meghalaya</option>
+                        <option value="Mizoram">Mizoram</option>
+                        <option value="Nagaland">Nagaland</option>
+                        <option value="Odisha">Odisha</option>
+                        <option value="Puducherry">Puducherry</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Sikkim">Sikkim</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="TelenganaTelengana">Telengana</option>
+                        <option value="Tripura">Tripura</option>
+                        <option value="Uttarakhand">Uttarakhand</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="West Bengal">West Bengal</option>
+                    </select>
+                    <center><button class="btn btn-primary" type="submit">Search</button></center>
+                </form>
+                <p class="text-center" style="color: #1c3d33;">{{stat}}</p>
+                <br>
+                <div id="box" class="text center" style="height: 115px;">
+                    <p class="text-center text-danger ">{{cfc}}</p>
+                    <p class="text-center text-danger ">{{atc}}</p>
+                    <p class="text-center text-success ">{{rvc}}</p>
+                    <p class="text-center " id="d1">{{dth}}</p>
+                </div>
+            </div>
+        </center>
+    </section>
+    <section id="About">
+        <br><br><br>
+        <center>
+            <div class="butt">
+                <button class="btn btn-outline-danger" onclick="symptoms()">symptoms</button>
+                <button class="btn btn-outline-danger" onclick="prevention()">prevention</button>
+                <button class="btn btn-outline-danger" onclick="Treatement()">Treatement</button>
+            </div>
+        </center>
+        <div id="sympt" class="active">
+            <div class="sym">
+                <h4 style="color: #6610f2;">Most common symptoms:</h4>
+                <ul>
+                    <li>fever</li>
+                    <li>dry cough</li>
+                    <li>tiredness</li>
+                </ul>
+                <h4 style="color: #6610f2;">Less common symptoms:</h4>
+                <ul>
+                    <li>aches and pains</li>
+                    <li>sore throat</li>
+                    <li>diarrhoea</li>
+                    <li>conjunctivitis</li>
+                    <li>headache</li>
+                    <li>loss of taste or smell</li>
+                    <li>a rash on skin, or discolouration of fingers or toes</li>
+                </ul>
+                <h4 style="color: #6610f2;">Serious symptoms:</h4>
+                <ul>
+                    <li>difficulty breathing or shortness of breath</li>
+                    <li>chest pain or pressure</li>
+                    <li>loss of speech or movement</li>
+                </ul>
+            </div>
+        </div>
+        <div id="prevent">
+            <div class="yccsuf">
+                <center>
+                    <img class="Fcssn" src="https://www.gstatic.com/healthricherkp/campaigns/wear-mask-save-lives/UZ9ZuX.svg" alt="">
+                </center>
+                <h3 class="text-center">Wear a mask.Save lives.</h3>
+                <h4 class="text-center">Wear a face cover</h4>
+                <h4 class="text-center">Wash your hands</h4>
+                <h4 class="text-center">Keep a safe distance</h4>
+                <p style="font-weight: 400; margin-top: 5vh;">General public health information</p>
+            </div>
+        </div>
+        <div id="treat">
+            <p class="fw-bold">Self-care</p>
+            <ul>
+                <li>Call your health care provider or COVID-19 hotline to find out where and when to get a test.</li>
+                <li>Cooperate with contact-tracing procedures to stop the spread of the virus.
+                </li>
+                <li>If testing is not available, stay home and away from others for 14 days.
+                </li>
+                <li>While you are in quarantine, do not go to work, to school or to public places. Ask someone to bring you supplies.
+                </li>
+                <li>Keep at least a 1-metre distance from others, even from your family members.
+                </li>
+                <li>Wear a medical mask to protect others, including if/when you need to seek medical care.
+                </li>
+                <li>Clean your hands frequently.
+                </li>
+                <li>Stay in a separate room from other family members, and if not possible, wear a medical mask.
+                </li>
+                <li>Keep the room well-ventilated.
+                </li>
+                <li>If you share a room, place beds at least 1 metre apart.
+                </li>
+                <li>Monitor yourself for any symptoms for 14 days.
+                </li>
+                <li>Call your health care provider immediately if you have any of these danger signs: difficulty breathing, loss of speech or mobility, confusion or chest pain.
+                </li>
+                <li>Stay positive by keeping in touch with loved ones by phone or online, and by exercising at home.
+                </li>
+            </ul>
+            <p class="fw-bold">Medical treatments</p>
+            <ul>
+                <li>Optimal supportive care includes oxygen for severely ill patients and those who are at risk for severe disease and more advanced respiratory support such as ventilation for patients who are critically ill.</li>
+                <li>Dexamethasone is a corticosteroid that can help reduce the length of time on a ventilator and save lives of patients with severe and critical illness.</li>
+            </ul>
+        
+    </section>
+    <br><br>
+    <div class="social">
+            <p class="text-center" style="margin-bottom: 0px; margin-top: 0px;">Developed with &#128151; by Deep raj</p>
+            <div class="icon text-center">
+                <a href="https://github.com/Deeprajshrivastav"> <i class="fa fa-github" style="font-size:30px; color: black;"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/deep-raj-0a4972182/"> <i class="fa fa-linkedin-square" style="font-size:30px; color: black;"></i>
+                </a>
+                <a href="https://twitter.com/DeepRaj34804742"> <i class="fa fa-twitter" style="font-size:30px; color: black;"></i>
+                </a>
+            </div>
+        </div>
+   
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    <script>
+    function symptoms() {
+        if (sympt.classList != 'active') {
+            sympt.classList.toggle('active');
+
+        }
+        prevent.classList.remove('active');
+        treat.classList.remove('active');
+    }
+
+    function prevention() {
+        if (prevent.classList != 'active') {
+            prevent.classList.toggle('active');
+        }
+
+        sympt.classList.remove('active');
+        treat.classList.remove('active');
+    }
+
+    function Treatement() {
+        if (treat.classList != 'active'); {
+            treat.classList.toggle('active');
+        }
+        prevent.classList.remove('active');
+        sympt.classList.remove('active');
+    }
+
+    const header = document.getElementById('header');
+    const toggle = document.getElementById('toggle');
+    const navbar = document.getElementById('navbar');
+    document.onclick = function(e) {
+        if (e.target.id !== 'header' && e.target.id !== 'toggle' && e.target.id !== 'navbar') {
+            toggle.classList.remove('active');
+            navbar.classList.remove('active');
+        }
+    }
+    toggle.onclick = function() {
+        toggle.classList.toggle('active');
+        navbar.classList.toggle('active');
+    }
+
+    function myfunction() {
+        msg.innerHTML = "Thank you for contacting us";
+    }
+    </script>
+</body>
+
+</html>
